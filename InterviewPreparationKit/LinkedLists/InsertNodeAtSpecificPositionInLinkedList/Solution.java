@@ -67,6 +67,18 @@ public class Solution {
      */
     static SinglyLinkedListNode insertNodeAtPosition(SinglyLinkedListNode head, int data, int position) {
 
+        SinglyLinkedListNode newNode = new SinglyLinkedListNode(data);
+        SinglyLinkedListNode currentNode = head;
+
+        for (int i = 0; i < position - 1; i++) {
+            if (currentNode.next == null){
+                break;
+            }
+            currentNode = currentNode.next;
+
+        }
+        newNode.next = currentNode.next;
+        currentNode.next = newNode;
         return head;
     }
 
@@ -74,7 +86,7 @@ public class Solution {
 
     public static void main(String[] args) throws IOException {
 //        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("HackerRank/InterviewPreparationKit/Sorting/MarkAndToys/test.txt"));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("InterviewPreparationKit/LinkedLists/InsertNodeAtSpecificPositionInLinkedList/test.txt"));
 
         SinglyLinkedList llist = new SinglyLinkedList();
 
