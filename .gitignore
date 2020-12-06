@@ -3,3 +3,9 @@
 
 #Intellij iml
 *.iml
+
+#venv
+venv
+
+#out
+out
