@@ -1,63 +1,72 @@
 package Arrays.LeftRotation;
 
 import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
 import java.util.*;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
-public class Solution {
+class Result {
 
-    // Complete the rotLeft function below.
-    static int[] rotLeft(int[] a, int d) {
+    /*
+     * Complete the 'rotLeft' function below.
+     *
+     * The function is expected to return an INTEGER_ARRAY.
+     * The function accepts following parameters:
+     * 1. INTEGER_ARRAY a
+     * 2. INTEGER d
+     */
 
-        for (int i = 0; i < d; i++) {
-            int j, first;
-            first = a[0];
-
-            for (j = 0; j < a.length - 1; j++) {
-                a[j] = a[j + 1];
-            }
-            a[j] = first;
-
+    public static List<Integer> rotLeft(List<Integer> a, int d) {
+        // Write your code here
+        int size = a.size();
+        if (size == d) {
+            return a;
         }
-
-        return a;
+        List result = new ArrayList();
+        result.addAll(a.subList(d, size));
+        result.addAll(a.subList(0, d));
+        return result;
     }
 
-    private static final Scanner scanner = new Scanner(System.in);
+}
 
+public class Solution {
     public static void main(String[] args) throws IOException {
-//        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("HackerRank/InterviewPreparationKit/Arrays/LeftRotation/test.txt"));
+        // BufferedReader bufferedReader = new BufferedReader(new
+        // InputStreamReader(System.in));
+        // BufferedWriter bufferedWriter = new BufferedWriter(new
+        // FileWriter(System.getenv("OUTPUT_PATH")));
+        BufferedReader bufferedReader = new BufferedReader(
+                new FileReader("InterviewPreparationKit/Arrays/LeftRotation/input.txt"));
+        BufferedWriter bufferedWriter = new BufferedWriter(
+                new FileWriter("InterviewPreparationKit/Arrays/LeftRotation/output.txt"));
 
-        String[] nd = scanner.nextLine().split(" ");
+        String[] firstMultipleInput = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
 
-        int n = Integer.parseInt(nd[0]);
+        int n = Integer.parseInt(firstMultipleInput[0]);
 
-        int d = Integer.parseInt(nd[1]);
+        int d = Integer.parseInt(firstMultipleInput[1]);
 
-        int[] a = new int[n];
+        List<Integer> a = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
+                .map(Integer::parseInt)
+                .collect(toList());
 
-        String[] aItems = scanner.nextLine().split(" ");
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+        List<Integer> result = Result.rotLeft(a, d);
 
-        for (int i = 0; i < n; i++) {
-            int aItem = Integer.parseInt(aItems[i]);
-            a[i] = aItem;
-        }
+        bufferedWriter.write(
+                result.stream()
+                        .map(Object::toString)
+                        .collect(joining(" "))
+                        + "\n");
 
-        int[] result = rotLeft(a, d);
-
-        for (int i = 0; i < result.length; i++) {
-            bufferedWriter.write(String.valueOf(result[i]));
-
-            if (i != result.length - 1) {
-                bufferedWriter.write(" ");
-            }
-        }
-
-        bufferedWriter.newLine();
-
+        bufferedReader.close();
         bufferedWriter.close();
-
-        scanner.close();
     }
 }

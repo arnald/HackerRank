@@ -9,3 +9,5 @@ venv
 
 #out
 out
+
+.vscode/*
