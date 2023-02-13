@@ -24,15 +24,16 @@ class Result {
      */
 
     public static String twoStrings(String s1, String s2) {
+
         // Solution 1
-        // Map<Character, Integer> m = new HashMap<>();
+        // Set<Character> m = new HashSet<>();
         
         // for(Character c: s1.toCharArray()) {
-        //     m.put(c, 1);
+        //     m.add(c);
         // }
         
         // for(Character c: s2.toCharArray()) {
-        //     if(m.containsKey(c)) {
+        //     if(m.contains(c)) {
         //         return "YES";
         //     }
         // }
