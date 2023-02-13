@@ -6,61 +6,79 @@ import java.security.*;
 import java.text.*;
 import java.util.*;
 import java.util.concurrent.*;
-import java.util.function.Function;
+import java.util.function.*;
 import java.util.regex.*;
-import java.util.stream.Collectors;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
 
-public class Solution {
+class Result {
 
-    // Complete the twoStrings function below.
-    static String twoStrings(String s1, String s2) {
+    /*
+     * Complete the 'twoStrings' function below.
+     *
+     * The function is expected to return a STRING.
+     * The function accepts following parameters:
+     * 1. STRING s1
+     * 2. STRING s2
+     */
 
-        HashMap<Character, Integer> firstString = createMap(s1);
-        HashMap<Character, Integer> secondString = createMap(s2);
+    public static String twoStrings(String s1, String s2) {
+        // Solution 1
+        // Map<Character, Integer> m = new HashMap<>();
+        
+        // for(Character c: s1.toCharArray()) {
+        //     m.put(c, 1);
+        // }
+        
+        // for(Character c: s2.toCharArray()) {
+        //     if(m.containsKey(c)) {
+        //         return "YES";
+        //     }
+        // }
+        
+        // return "NO";
 
-        for (Map.Entry f : firstString.entrySet()) {
-            boolean check = secondString.containsKey(f.getKey());
-            if (secondString.containsKey(f.getKey())){
-                return "YES";
-            }
+        // Solution 2
+        String s1Result = s1.replaceAll("[" + s2 + "]", "");
+
+        if (s1Result.length() < s1.length()) {
+            return "YES";
         }
-
-
         return "NO";
     }
 
-    private static HashMap<Character, Integer> createMap(String words) {
+}
 
-        HashMap<Character, Integer> map = new HashMap<>();
-        for (char ch : words.toCharArray()) {
-            map.put(ch, map.getOrDefault(ch, 0) + 1);
-        }
-
-        return map;
-    }
-
-    private static final Scanner scanner = new Scanner(System.in);
-
+public class Solution {
     public static void main(String[] args) throws IOException {
-//        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("HackerRank/InterviewPreparationKit/DictionariesAndHashmaps/TwoStrings/test.txt"));
+        // BufferedReader bufferedReader = new BufferedReader(new
+        // InputStreamReader(System.in));
+        // BufferedWriter bufferedWriter = new BufferedWriter(new
+        // FileWriter(System.getenv("OUTPUT_PATH")));
+        BufferedReader bufferedReader = new BufferedReader(
+                new FileReader("InterviewPreparationKit/DictionariesAndHashmaps/TwoStrings/input.txt"));
+        BufferedWriter bufferedWriter = new BufferedWriter(
+                new FileWriter("InterviewPreparationKit/DictionariesAndHashmaps/TwoStrings/output.txt"));
 
-        int q = scanner.nextInt();
-        scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+        int q = Integer.parseInt(bufferedReader.readLine().trim());
 
-        for (int qItr = 0; qItr < q; qItr++) {
-            String s1 = scanner.nextLine();
+        IntStream.range(0, q).forEach(qItr -> {
+            try {
+                String s1 = bufferedReader.readLine();
 
-            String s2 = scanner.nextLine();
+                String s2 = bufferedReader.readLine();
 
-            String result = twoStrings(s1, s2);
+                String result = Result.twoStrings(s1, s2);
 
-            bufferedWriter.write(result);
-            bufferedWriter.newLine();
-        }
+                bufferedWriter.write(result);
+                bufferedWriter.newLine();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
 
+        bufferedReader.close();
         bufferedWriter.close();
-
-        scanner.close();
     }
 }
