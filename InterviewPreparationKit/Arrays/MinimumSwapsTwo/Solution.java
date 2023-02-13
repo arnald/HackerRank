@@ -9,7 +9,8 @@ public class Solution {
     static int minimumSwaps(int[] arr) {
         int count = 0;
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] == i + 1) continue;
+            if (arr[i] == i + 1)
+                continue;
             count++;
             int tmp = arr[i];
             arr[i] = arr[tmp - 1];
@@ -19,11 +20,10 @@ public class Solution {
         return count;
     }
 
-    private static final Scanner scanner = new Scanner(System.in);
-
     public static void main(String[] args) throws IOException {
-//        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("HackerRank/InterviewPreparationKit/Arrays/MinimumSwapsTwo/test.txt"));
+        // BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        Scanner scanner = new Scanner(new File("InterviewPreparationKit/Arrays/MinimumSwapsTwo/input.txt"));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("InterviewPreparationKit/Arrays/MinimumSwapsTwo/output.txt"));
 
         int n = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
