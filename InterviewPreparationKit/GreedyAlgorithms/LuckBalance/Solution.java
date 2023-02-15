@@ -37,21 +37,23 @@ public class Solution {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-//        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("HackerRank/InterviewPreparationKit/GreedyAlgorithms/LuckBalance/test.txt"));
+        // BufferedWriter bufferedWriter = new BufferedWriter(new
+        // FileWriter(System.getenv("OUTPUT_PATH")));
+        BufferedReader bufferedReader = new BufferedReader(
+                new FileReader("InterviewPreparationKit/GreedyAlgorithms/LuckBalance/input.txt"));
+        BufferedWriter bufferedWriter = new BufferedWriter(
+                new FileWriter("InterviewPreparationKit/GreedyAlgorithms/LuckBalance/output.txt"));
 
-        String[] nk = scanner.nextLine().split(" ");
+        String[] firstMultipleInput = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
 
-        int n = Integer.parseInt(nk[0]);
+        int n = Integer.parseInt(firstMultipleInput[0]);
 
-        int k = Integer.parseInt(nk[1]);
+        int k = Integer.parseInt(firstMultipleInput[1]);
 
         int[][] contests = new int[n][2];
 
         for (int i = 0; i < n; i++) {
-            String[] contestsRowItems = scanner.nextLine().split(" ");
-            scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
-
+            String[] contestsRowItems = bufferedReader.readLine().replaceAll("\\s+$", "").split(" ");
             for (int j = 0; j < 2; j++) {
                 int contestsItem = Integer.parseInt(contestsRowItems[j]);
                 contests[i][j] = contestsItem;
